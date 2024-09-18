@@ -1,31 +1,19 @@
-require('dotenv').config(); // Ensure this line is at the top of the file
-
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
-const path = require('path');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
-app.use(express.json());
-app.use(cors());
 
-mongoose.connect(process.env.MONGO_URI)
+// Middleware
+app.use(express.json());  // To parse JSON bodies
+
+// Routes
+app.use('/admin', adminRoutes);  // Prefix route with '/admin'
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/TMS_DB')
   .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+  .catch(err => console.log('MongoDB connection error:', err));
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the TMS_MERN_STACK server!');
-});
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  });
-}
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start server
+app.listen(5000, () => console.log('Server running on port 5000'));
