@@ -1,12 +1,15 @@
 const express = require('express');
+const { registerUser, loginUser } = require('../controllers/userController');
 const router = express.Router();
 
-// Example route for adding a user
-router.post('/add', (req, res) => {
-  const { username, email } = req.body;
-  res.send(`User added with username: ${username} and email: ${email}`);
-});
+// @route   POST /user/register
+// @desc    Register a new user
+// @access  Public
+router.post('/register', registerUser);
 
-// Add more user-related routes here
+// @route   POST /user/login
+// @desc    Login user and get token
+// @access  Public
+router.post('/login', loginUser);
 
 module.exports = router;

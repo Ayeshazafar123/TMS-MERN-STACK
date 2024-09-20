@@ -1,49 +1,66 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const AdminUser = require('../models/AdminUser');
-require('dotenv').config();  // Ensure environment variables are loaded
+const { generateToken } = require('../utils/jwt'); // Assuming you have a utility for generating tokens
 
-// @desc    Authenticate admin user and issue JWT token
-// @access  Public
-const loginAdminUser = async (req, res) => {
+// Register new admin user
+const registerAdminUser = async (req, res) => {
   try {
-    // Extract username and password from the request body
     const { username, password } = req.body;
 
-    // Perform necessary validation checks
     if (!username || !password) {
-      return res.status(400).json({ error: 'Username and password are required' });
+      return res.status(400).json({ message: 'Please provide both username and password' });
     }
 
-    // Find the admin user by username in the database
+    const existingUser = await AdminUser.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    const newUser = new AdminUser({ username, password }); // Password will be hashed in the schema's pre-save hook
+    await newUser.save();
+
+    res.status(201).json({ message: 'User registered successfully', user: { username: newUser.username } });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+// Login admin user
+const loginAdminUser = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ message: 'Please provide both username and password' });
+    }
+
     const user = await AdminUser.findOne({ username });
     if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Compare the provided password with the stored hashed password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Generate a JWT token
-    const accessToken = jwt.sign(
-      { id: user._id, username: user.username },
-      process.env.ACCESS_TOKEN_SECRET,  // Secret key for signing tokens
-      { expiresIn: '1h' }  // Token expiry time
-    );
-
-    // Return a success response with the token
-    res.status(200).json({ accessToken });
-
+    const token = generateToken(user._id);
+    res.status(200).json({
+      message: 'Login successful',
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        role: user.role,
+      },
+    });
   } catch (error) {
-    // Handle any errors that occur during the process
-    console.error(error);
     res.status(500).json({ error: 'Server error' });
   }
 };
 
 module.exports = {
-  loginAdminUser
+  registerAdminUser,
+  loginAdminUser,
 };

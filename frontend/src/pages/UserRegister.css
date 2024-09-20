@@ -1,0 +1,113 @@
+/* UserRegister.css */
+
+.register-container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f0f4f8;
+    padding: 20px;
+}
+
+.register-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.register-right {
+    flex: 1;
+    padding: 40px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    background-color: #ffffff;
+}
+
+.register-image {
+    max-width: 80%;
+    height: auto;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.register-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #3081D0;
+    font-size: 1em;
+    color: #0C356A;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.register-input:focus {
+    border: 1px solid #22668D;
+    box-shadow: 0px 0px 10px rgba(34, 102, 141, 0.2);
+    outline: none;
+}
+
+.register-button {
+    padding: 12px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #3081D0;
+    color: #ffffff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    border: none;
+    margin-top: 10px;
+}
+
+.register-button:hover {
+    background-color: #22668D;
+    transform: scale(1.05);
+}
+
+.success-message {
+    color: green;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.login-link {
+    font-size: 0.9em;
+    color: #0C356A;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .register-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .register-left, .register-right {
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .register-right {
+        margin-top: 20px;
+        box-shadow: none;
+        padding: 20px;
+    }
+}

@@ -1,9 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const authenticateToken = require('../middleware/authMiddleware');
-const { createAdminUser } = require('../controllers/adminController');
+const { registerAdminUser, loginAdminUser } = require('../controllers/authController');
 
-// Route for creating a new admin user
-router.post('/admin', authenticateToken, createAdminUser);
+const router = express.Router();
+
+// Public route for user registration
+router.post('/register', registerAdminUser);
+
+// Public route for user login
+router.post('/login', loginAdminUser);
 
 module.exports = router;

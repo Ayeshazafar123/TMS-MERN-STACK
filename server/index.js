@@ -1,33 +1,36 @@
-require('dotenv').config();  // Load environment variables from .env
-
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');  // For handling Cross-Origin Resource Sharing
-const adminRoutes = require('./routes/admin');
-const authRoutes = require('./routes/authRoutes');  // Import auth routes
+const dotenv = require('dotenv');
+const cors = require('cors'); // Import CORS
+const authRoutes = require('./routes/authRoutes'); // Admin routes
+const userRoutes = require('./routes/userRoutes'); // User routes
+
+dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(express.json());  // To parse JSON bodies
-app.use(cors());  // Enable CORS for all routes
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-// Routes
-app.use('/admin', adminRoutes);  // Admin routes
-app.use('/auth', authRoutes);    // Auth routes (register, login)
+// Use CORS middleware
+app.use(cors()); // Enable CORS for all routes
 
 // Connect to MongoDB
-const mongoURI = process.env.MONGO_URI;  // MongoDB URI from .env file
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })  // Connect to MongoDB
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log('MongoDB connection error:', err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error(err));
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
+// Use the auth routes for admin
+app.use('/admin', authRoutes);
+
+// Use the user routes for regular users
+app.use('/user', userRoutes);
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-// Start server
-const PORT = process.env.PORT || 5000;  // Use port from .env or default to 5000
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
