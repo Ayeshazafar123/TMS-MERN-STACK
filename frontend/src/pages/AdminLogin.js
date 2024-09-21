@@ -37,7 +37,8 @@
 // export default AdminLogin;
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './AdminLogin.css';
+import "../css_files/AdminLogin.css"
+// import './AdminLogin.css';
 import adminImage from '../assets/register1.png';
 
 const AdminLogin = () => {

@@ -1,74 +1,8 @@
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-
-// const AdminRegister = () => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [errorMessage, setErrorMessage] = useState('');
-//   const [successMessage, setSuccessMessage] = useState('');
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setErrorMessage('');
-//     setSuccessMessage('');
-
-//     try {
-//       const response = await axios.post('http://localhost:5000/admin/register', {
-//         username,
-//         password,
-//       });
-//       setSuccessMessage('Admin registered successfully!');
-//       // Navigate to admin login or dashboard
-//       setTimeout(() => {
-//         navigate('/admin/login');
-//       }, 2000);
-//     } catch (error) {
-//       setErrorMessage('Registration failed. Please try again.');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Admin Register</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Username</label>
-//           <input
-//             type="text"
-//             value={username}
-//             onChange={(e) => setUsername(e.target.value)}
-//             required
-//           />
-//         </div>
-//         <div>
-//           <label>Password</label>
-//           <input
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             required
-//           />
-//         </div>
-//         <button type="submit">Register</button>
-//       </form>
-//       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-//       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-//       <p>
-//         Already have an account? <a href="/admin/login">Login here</a>
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default AdminRegister;
-
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './AdminRegister.css';
+import "../css_files/AdminRegister.css"
 import adminRegisterImage from '../assets/Data extraction-amico.png';
 
 const AdminRegister = () => {
@@ -84,7 +18,7 @@ const AdminRegister = () => {
     setSuccessMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/admin/register', {
+      await axios.post('http://localhost:5000/admin/register', {
         username,
         password,
       });

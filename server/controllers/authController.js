@@ -4,6 +4,7 @@ const AdminUser = require('../models/AdminUser');
 const { generateToken } = require('../utils/jwt'); // Assuming you have a utility for generating tokens
 
 // Register new admin user
+// Register new admin user
 const registerAdminUser = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -17,14 +18,22 @@ const registerAdminUser = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    const newUser = new AdminUser({ username, password }); // Password will be hashed in the schema's pre-save hook
+    const newUser = new AdminUser({ username, password });
     await newUser.save();
 
-    res.status(201).json({ message: 'User registered successfully', user: { username: newUser.username } });
+    // Generate a JWT token for the newly created user
+    const token = generateToken(newUser._id);
+
+    res.status(201).json({
+      message: 'User registered successfully',
+      token, // Include the token in the response
+      user: { username: newUser.username },
+    });
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 // Login admin user
 const loginAdminUser = async (req, res) => {

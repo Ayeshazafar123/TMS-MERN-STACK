@@ -1,38 +1,8 @@
-// import React from 'react';
-// import { useNavigate, Link } from 'react-router-dom';
-
-// const UserLogin = () => {
-//     const navigate = useNavigate();
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         // Perform login logic here...
-
-//         // On successful login:
-//         navigate('/user/dashboard');
-//     };
-
-//     return (
-//         <div>
-//             <h2>User Login</h2>
-//             <form onSubmit={handleSubmit}>
-//                 <input type="text" placeholder="Email" required />
-//                 <input type="password" placeholder="Password" required />
-//                 <button type="submit">Login</button>
-//             </form>
-//             <p>
-//                 Don't have an account? <Link to="/user/register">Sign up</Link>
-//             </p>
-//         </div>
-//     );
-// };
-
-// export default UserLogin;
-
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './UserLogin.css';
+// import './UserLogin.css';
+import "../css_files/UserLogin.css"
 import loginImage from '../assets/Devices-pana.png';
 
 const UserLogin = () => {

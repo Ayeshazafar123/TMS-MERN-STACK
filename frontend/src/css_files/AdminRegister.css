@@ -54,7 +54,7 @@ a:hover {
 .register-form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the inputs and button */
+    align-items: center; 
 }
 
 .form-group {
@@ -68,8 +68,8 @@ a:hover {
     border: 1px solid #3081D0;
     font-size: 1em;
     color: #0C356A;
-    width: 100%; /* Full width of form-group */
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    width: 100%; 
+    box-sizing: border-box; 
     transition: border 0.3s, box-shadow 0.3s;
 }
 
@@ -81,7 +81,7 @@ a:hover {
 
 .register-button {
     padding: 12px;
-    width: 100%; /* Full width of form-group */
+    width: 100%; 
     border-radius: 5px;
     background-color: #3081D0;
     color: #ffffff;
