@@ -157,13 +157,19 @@ const UpdateTicketCategoryForm = () => {
 
   const handleConfirmUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/ticket/ticket-categories/${id}`, category);
+      const token = localStorage.getItem('token'); // Retrieve the token from local storage
+      await axios.put(`http://localhost:5000/ticket/ticket-categories/${id}`, category, {
+        headers: {
+          'Authorization': `Bearer ${token}`,  // Add the token to the request headers
+        },
+      });
       navigate('/admin/view-category');
     } catch (err) {
       setError('Error updating category: ' + (err.response?.data?.error || 'Unexpected error'));
     }
     setOpenDialog(false); // Close the dialog after the operation
   };
+  
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
