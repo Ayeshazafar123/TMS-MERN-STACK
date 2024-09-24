@@ -37,7 +37,8 @@
 // export default AdminLogin;
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import "../css_files/AdminLogin.css"
+import "../css_files/AdminLogin.css";
+import '../components/ViewTicketCategoriesPage';
 // import './AdminLogin.css';
 import adminImage from '../assets/register1.png';
 
@@ -70,7 +71,7 @@ const AdminLogin = () => {
             localStorage.setItem('token', data.token);
 
             // If login is successful, navigate to the dashboard
-            navigate('/admin/dashboard');
+            navigate('/admin/view-category');
         } catch (err) {
             setError(err.message); // Set the error message
         }

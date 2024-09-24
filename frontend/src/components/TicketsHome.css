@@ -1,0 +1,100 @@
+body {
+  background-color: #f0f8ff; /* A soft and appealing background color */
+}
+
+.tickets-home {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.title {
+  font-size: 2.5em;
+  color: #003366; /* Dark blue color for title */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.5em;
+  color: #003366; /* Dark blue color for loading text */
+}
+
+.error-message {
+  color: red;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.no-tickets {
+  text-align: center;
+  font-size: 1.2em;
+  color: #003366; /* Dark blue color for no tickets message */
+}
+
+.tickets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-items: center; /* Center align items */
+}
+
+.ticket-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: flex-start; /* Align items at the top */
+  margin: 10px;
+  border: 1px solid #ccc; /* Optional: add a border for better visibility */
+  border-radius: 5px; /* Optional: rounded corners */
+  overflow: hidden; /* Ensures no overflow */
+  max-width: 300px; /* Optional: limit max width */
+}
+
+.ticket-card:hover {
+  transform: translateY(-5px);
+}
+
+.ticket-name {
+  color: #003366; /* Dark blue for ticket names */
+  margin: 0;
+  font-size: 1.5em;
+  text-align: center;
+  text-transform: uppercase; /* Title in uppercase */
+  padding-top: 20px;
+  
+}
+
+.ticket-image {
+  width: 100%; /* Make image take full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Scale the image to fit the container */
+  padding-top: 30px;
+}
+
+.category, .price, .dates {
+  font-size: 1em;
+  color: #004080; /* Medium blue for details */
+  margin: 5px 0;
+  text-align: center; /* Center align the details */
+}
+
+/* Responsive adjustments */
+@media (min-width: 1200px) {
+  .tickets-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 tickets on large screens */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .tickets-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 tickets on medium screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .tickets-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 tickets on small screens */
+  }
+}
