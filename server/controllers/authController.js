@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const AdminUser = require('../models/AdminUser');
 const { generateToken } = require('../utils/jwt'); // Assuming you have a utility for generating tokens
 
-// Register new admin user
+
 // Register new admin user
 const registerAdminUser = async (req, res) => {
   try {

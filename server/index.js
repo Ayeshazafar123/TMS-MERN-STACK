@@ -201,7 +201,6 @@
 
 
 
-
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -216,33 +215,31 @@ dotenv.config();
 
 const app = express();
 
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-// Use CORS middleware
+// Middleware
+app.use(express.json()); // Middleware to parse JSON bodies
 app.use(cors()); // Enable CORS for all routes
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    process.exit(1); // Exit process if unable to connect
+  }
+};
 
-// Serve static files from the "uploads" directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+connectDB(); // Call the function to connect to MongoDB
 
-// Use the auth routes for admin
-app.use('/admin', authRoutes);
-
-// Use the user routes for regular users
-app.use('/user', userRoutes);
-
-// Use the ticket category routes
+// Define routes
+app.use('/admin', authRoutes); // Use the auth routes for admin
+app.use('/user', userRoutes); // Use the user routes for regular users
 app.use('/ticket', ticketCategoryRoutes); // Set the base URL for ticket categories
-
-// Use the ticket routes
 app.use('/tickets', ticketRoutes); // Set the base URL for tickets
 
 // Handle 404 errors

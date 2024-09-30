@@ -1,100 +1,141 @@
 body {
-  background-color: #f0f8ff; /* A soft and appealing background color */
+    background-color: #f0f8ff; 
 }
 
 .tickets-home {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
+    display: flex; /* Ensure flex layout for main components */
 }
 
 .title {
-  font-size: 2.5em;
-  color: #003366; /* Dark blue color for title */
-  margin-bottom: 20px;
-  text-align: center;
+    font-size: 2.5em;
+    color: #003366; 
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .loading {
-  text-align: center;
-  font-size: 1.5em;
-  color: #003366; /* Dark blue color for loading text */
+    text-align: center;
+    font-size: 1.5em;
+    color: #003366; 
 }
 
 .error-message {
-  color: red;
-  margin-top: 20px;
-  text-align: center;
+    color: red;
+    margin-top: 20px;
+    text-align: center;
 }
 
 .no-tickets {
-  text-align: center;
-  font-size: 1.2em;
-  color: #003366; /* Dark blue color for no tickets message */
+    text-align: center;
+    font-size: 1.2em;
+    color: #003366; 
 }
 
 .tickets-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  justify-items: center; /* Center align items */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
 }
 
 .ticket-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  justify-content: flex-start; /* Align items at the top */
-  margin: 10px;
-  border: 1px solid #ccc; /* Optional: add a border for better visibility */
-  border-radius: 5px; /* Optional: rounded corners */
-  overflow: hidden; /* Ensures no overflow */
-  max-width: 300px; /* Optional: limit max width */
-}
-
-.ticket-card:hover {
-  transform: translateY(-5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+    margin: 20px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    overflow: hidden; 
+    max-width: 300px; 
 }
 
 .ticket-name {
-  color: #003366; /* Dark blue for ticket names */
-  margin: 0;
-  font-size: 1.5em;
-  text-align: center;
-  text-transform: uppercase; /* Title in uppercase */
-  padding-top: 20px;
-  
+    color: #003366; 
+    margin: 0;
+    font-size: 1.5em;
+    text-align: center;
+    text-transform: uppercase; 
+    padding-top: 20px;
 }
 
 .ticket-image {
-  width: 100%; /* Make image take full width of the container */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Scale the image to fit the container */
-  padding-top: 30px;
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+    padding-top: 30px;
 }
 
 .category, .price, .dates {
-  font-size: 1em;
-  color: #004080; /* Medium blue for details */
-  margin: 5px 0;
-  text-align: center; /* Center align the details */
+    font-size: 1em;
+    color: #004080; 
+    margin: 5px 0;
+    text-align: center; 
 }
+
+.search-bar {
+    display: flex;             
+    justify-content: center;   
+    margin-bottom: 20px;      
+}
+
+.search-bar input {
+    padding: 10px 15px;       
+    font-size: 16px;          
+    border: 2px solid #004080;
+    border-radius: 5px;       
+    width: 300px;              
+    transition: border-color 0.3s; 
+}
+
+.search-bar input:focus {
+    border-color: #004080;    
+    outline: none;            
+}
+
+.search-bar button {
+    padding: 10px 20px;       
+    font-size: 16px;          
+    background-color: #004080; 
+    color: white;             
+    border: none;             
+    border-radius: 5px;       
+    cursor: pointer;          
+    margin-left: 10px;        
+    transition: background-color 0.3s; 
+}
+
+.search-bar button:hover {
+    background-color: #002b56; 
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 10px;
+}
+
 
 /* Responsive adjustments */
 @media (min-width: 1200px) {
-  .tickets-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 tickets on large screens */
-  }
+    .tickets-grid {
+        grid-template-columns: repeat(4, 1fr); 
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
-  .tickets-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 tickets on medium screens */
-  }
+    .tickets-grid {
+        grid-template-columns: repeat(3, 1fr); 
+    }
 }
 
 @media (max-width: 767px) {
-  .tickets-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 tickets on small screens */
-  }
+    .tickets-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
 }

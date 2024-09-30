@@ -1,40 +1,4 @@
-// import React from 'react';
-// import { useNavigate, Link } from 'react-router-dom';
-// import './AdminLogin.css';
-// import adminImage from '../assets/register1.png';
 
-// const AdminLogin = () => {
-//     const navigate = useNavigate();
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         // Perform login logic here...
-
-//         // On successful login:
-//         navigate('/admin/dashboard');
-//     };
-
-//     return (
-//         <div className="login-container">
-//             <div className="login-left">
-//                 <img src={adminImage} alt="Admin Register" className="login-image" />
-//             </div>
-//             <div className="login-right">
-//                 <h2>Admin Login</h2>
-//                 <form onSubmit={handleSubmit} className="login-form">
-//                     <input type="text" placeholder="Name" required className="login-input" />
-//                     <input type="password" placeholder="Password" required className="login-input" />
-//                     <button type="submit" className="login-button">Login</button>
-//                 </form>
-//                 <p className="signup-text">
-//                     Don't have an account? <Link to="/admin/register" className="signup-link">Sign up</Link>
-//                 </p>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default AdminLogin;
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import "../css_files/AdminLogin.css";
