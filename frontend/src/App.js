@@ -19,6 +19,7 @@ import TicketsHomePage from './components/TicketsHomePage';
 import TicketDetailsView from './components/TicketDetailView';
 import TicketSearch from './components/TicketSearch';
 import TicketUpdate from './components/EditTicketForm';
+import SideBar from "./components/SideBar"
 
 const App = () => {
     return (
@@ -42,6 +43,7 @@ const App = () => {
                 <Route path='/ticket-detail/:id' element={<TicketDetailsView />} />
                 <Route path='/ticket-search' element={<TicketSearch/>} />
                 <Route path='/ticket-update/:id' element={<TicketUpdate/>} />
+                <Route path="/sidebar" element={<SideBar />} />
             </Routes>
         </Router>
     );

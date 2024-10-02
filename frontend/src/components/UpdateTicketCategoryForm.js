@@ -1,12 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
+// import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Collapse,
+  // Drawer,
+  // List,
+  // ListItem,
+  // ListItemText,
+  // Collapse,
   Typography,
   Box,
   Dialog,
@@ -17,8 +18,9 @@ import {
   TextField,
   Button,
 } from '@mui/material';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+// import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import axios from 'axios';
+import Sidebar from './SideBar';
 
 const UpdateTicketCategoryForm = () => {
   const { id } = useParams();
@@ -27,17 +29,6 @@ const UpdateTicketCategoryForm = () => {
   const [error, setError] = useState('');
   const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
-  const [ticketManagementOpen, setTicketManagementOpen] = useState(false);
-  const [activeMenuItem, setActiveMenuItem] = useState(null);
-
-  const handleMenuItemClick = (item) => {
-    if (item === 'Ticket Management') {
-      setTicketManagementOpen(!ticketManagementOpen);
-    } else {
-      setActiveMenuItem(item);
-      setTicketManagementOpen(false);
-    }
-  };
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -87,7 +78,8 @@ const UpdateTicketCategoryForm = () => {
 
   return (
     <div style={{ display: 'flex' }}>
-      <Drawer variant="permanent" sx={{ 
+      <Sidebar/>
+      {/* <Drawer variant="permanent" sx={{ 
         width: 240, flexShrink: 0, 
         '& .MuiDrawer-paper': { backgroundColor: '#0F67B1' } }}>
         <Typography variant="h5" style={{ color: 'white', fontWeight: 'bold', padding: '16px' }}>TMS</Typography>
@@ -134,7 +126,7 @@ const UpdateTicketCategoryForm = () => {
             </div>
           ))}
         </List>
-      </Drawer>
+      </Drawer> */}
       <div style={{ flexGrow: 1, padding: '20px' }}>
         <Typography variant="h4" gutterBottom style={{ color: '#16325B', width: '100%', textAlign: 'left', borderBottom: '2px solid #16325B', paddingBottom: '20px' }}>
           Update Ticket Category
@@ -183,19 +175,5 @@ const UpdateTicketCategoryForm = () => {
   );
 };
 
-const getRouteForOption = (option) => {
-  switch (option) {
-    case 'Create Ticket':
-      return '/admin/create-category';
-    case 'View Ticket':
-      return '/admin/view-category';
-    case 'Update Ticket':
-      return '/admin/update-ticket';
-    case 'Delete Ticket':
-      return '/admin/delete-ticket';
-    default:
-      return '/admin/dashboard';
-  }
-};
 
 export default UpdateTicketCategoryForm;

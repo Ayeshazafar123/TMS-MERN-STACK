@@ -27,7 +27,7 @@ const TicketSearch = () => {
         type="text"
         value={ticketId}
         onChange={(e) => setTicketId(e.target.value)}
-        placeholder="Enter Ticket ID"
+        placeholder="Enter Ticket ID...."
       />
       <button onClick={handleSearch}>Search</button>
 
@@ -37,3 +37,4 @@ const TicketSearch = () => {
 };
 
 export default TicketSearch;
+

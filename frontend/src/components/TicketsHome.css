@@ -1,14 +1,38 @@
 body {
-    background-color: #f0f8ff; 
+    background-color: #f0f8ff;
+    margin: 0; /* Ensure no body margin affects layout */
+    padding: 0;
 }
 
 .tickets-home {
-    display: flex; /* Ensure flex layout for main components */
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px; /* Sidebar width */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    z-index: 100;
+    overflow-y: auto; /* Allow scrolling in sidebar */
+}
+
+.content-area {
+    flex: 1;
+    margin-left: 30px; /* Space equal to sidebar width + small gap */
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    overflow-x: hidden; /* Prevent any horizontal scroll */
 }
 
 .title {
     font-size: 2.5em;
-    color: #003366; 
+    color: #003366;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -16,7 +40,7 @@ body {
 .loading {
     text-align: center;
     font-size: 1.5em;
-    color: #003366; 
+    color: #003366;
 }
 
 .error-message {
@@ -28,7 +52,7 @@ body {
 .no-tickets {
     text-align: center;
     font-size: 1.2em;
-    color: #003366; 
+    color: #003366;
 }
 
 .tickets-grid {
@@ -41,72 +65,79 @@ body {
 .ticket-card {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: flex-start;
     margin: 20px;
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    overflow: hidden; 
-    max-width: 300px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 300px;
+    min-height: 500px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ticket-name {
-    color: #003366; 
-    margin: 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #004080;
+    margin-top: 10px;
+    margin-left: 0px;
     text-align: center;
-    text-transform: uppercase; 
-    padding-top: 20px;
+    text-transform: uppercase;
 }
 
 .ticket-image {
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-    padding-top: 30px;
+    max-height: 500px;
+    width: 100%;
+    object-fit: contain;
+    padding-top: 0px;
+    border-radius: 10px;
+    background-color: orange;
+
+    
 }
 
 .category, .price, .dates {
     font-size: 1em;
-    color: #004080; 
+    color: #004080;
     margin: 5px 0;
-    text-align: center; 
+    text-align: center;
 }
 
 .search-bar {
-    display: flex;             
-    justify-content: center;   
-    margin-bottom: 20px;      
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .search-bar input {
-    padding: 10px 15px;       
-    font-size: 16px;          
+    padding: 10px 15px;
+    font-size: 16px;
     border: 2px solid #004080;
-    border-radius: 5px;       
-    width: 300px;              
-    transition: border-color 0.3s; 
+    border-radius: 5px;
+    width: 300px;
+    transition: border-color 0.3s;
 }
 
 .search-bar input:focus {
-    border-color: #004080;    
-    outline: none;            
+    border-color: #004080;
+    outline: none;
 }
 
 .search-bar button {
-    padding: 10px 20px;       
-    font-size: 16px;          
-    background-color: #004080; 
-    color: white;             
-    border: none;             
-    border-radius: 5px;       
-    cursor: pointer;          
-    margin-left: 10px;        
-    transition: background-color 0.3s; 
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s;
 }
 
 .search-bar button:hover {
-    background-color: #002b56; 
+    background-color: #002b56;
 }
 
 .pagination {
@@ -120,22 +151,25 @@ body {
     margin: 0 10px;
 }
 
+.side-bar{
+    position: fixed;
+}
 
 /* Responsive adjustments */
 @media (min-width: 1200px) {
     .tickets-grid {
-        grid-template-columns: repeat(4, 1fr); 
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
     .tickets-grid {
-        grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 767px) {
     .tickets-grid {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
     }
 }

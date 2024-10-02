@@ -1,6 +1,7 @@
 
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   TextField,
@@ -8,17 +9,12 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Collapse,
 } from '@mui/material';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import Sidebar from './SideBar'; // Import Sidebar
 
 const CreateTicketCategoryPage = () => {
   const [categoryId, setCategoryId] = useState('');
@@ -27,17 +23,6 @@ const CreateTicketCategoryPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogMessage, setDialogMessage] = useState('');
-  const [activeMenuItem, setActiveMenuItem] = useState(null);
-  const [ticketManagementOpen, setTicketManagementOpen] = useState(false);
-
-  const handleMenuItemClick = (item) => {
-    if (item === 'Ticket Management') {
-      setTicketManagementOpen(!ticketManagementOpen);
-    } else {
-      setActiveMenuItem(item);
-      setTicketManagementOpen(false);
-    }
-  };
 
   const validateForm = () => {
     const errors = {};
@@ -77,54 +62,9 @@ const CreateTicketCategoryPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <Drawer variant="permanent" sx={{ width: 240, flexShrink: 0, '& .MuiDrawer-paper': { backgroundColor: '#0F67B1' } }}>
-        <Typography variant="h5" style={{ color: 'white', fontWeight: 'bold', padding: '16px' }}>TMS</Typography>
-        <List>
-          {['Ticket Management', 'Settings', 'User Ticket Management', 'Log Out'].map((text) => (
-            <div key={text}>
-              <ListItem
-                button
-                onClick={() => handleMenuItemClick(text)}
-                style={{
-                  backgroundColor: activeMenuItem === text ? '#FFDC7F' : 'transparent',
-                  color: activeMenuItem === text ? '#16325B' : 'white',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                  marginBottom: '5px',
-                }}
-              >
-                <ListItemText primary={<span style={{ color: activeMenuItem === text ? '#16325B' : 'white' }}>{text}</span>} />
-                {text === 'Ticket Management' ? (ticketManagementOpen ? <ExpandLess /> : <ExpandMore />) : null}
-              </ListItem>
-              <Collapse in={ticketManagementOpen && text === 'Ticket Management'} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  {['Create Ticket', 'View Ticket', 'Update Ticket', 'Delete Ticket'].map(option => (
-                    <ListItem
-                      button
-                      key={option}
-                      style={{
-                        backgroundColor: '#0F67B1',
-                        color: 'white',
-                        marginLeft: '20px',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        marginBottom: '5px',
-                      }}
-                      component={Link}
-                      to={getRouteForOption(option)}
-                      onClick={() => setActiveMenuItem(option)}
-                    >
-                      <ListItemText primary={<span style={{ color: 'white' }}>{option}</span>} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
-            </div>
-          ))}
-        </List>
-      </Drawer>
-      <div style={{ padding: '20px', width: '100%' }}>
+    <div style={{ display: 'flex' }}>
+      <Sidebar style={{ width: '300px' }} /> {/* Set the Sidebar width here */}
+      <div style={{ padding: '40px', width: 'calc(100% - 370px)',  }}> {/* Adjust width of the main content */}
         <Typography variant="h4" gutterBottom style={{ color: '#16325B', borderBottom: '2px solid #16325B', textAlign: 'left', width: '100%' }}>
           Create Ticket Category
         </Typography>
@@ -183,21 +123,6 @@ const CreateTicketCategoryPage = () => {
       </div>
     </div>
   );
-};
-
-const getRouteForOption = (option) => {
-  switch (option) {
-    case 'Create Ticket':
-      return '/admin/create-category';
-    case 'View Ticket':
-      return '/admin/view-category';
-    case 'Update Ticket':
-      return '/admin/update-ticket';
-    case 'Delete Ticket':
-      return '/admin/delete-ticket';
-    default:
-      return '/admin/dashboard';
-  }
 };
 
 export default CreateTicketCategoryPage;
