@@ -6,6 +6,7 @@ const multer = require('multer');
 const router = express.Router();
 const Ticket = require('../models/Ticket');
 const TicketCategory = require('../models/ticketCategoryModel'); // Correct import
+const auth = require('../middleware/authMiddleware')
 
 // Configure multer for file uploads (e.g., ticket pictures)
 const storage = multer.diskStorage({

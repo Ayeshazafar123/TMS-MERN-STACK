@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from './pages/HomePage';
 import AdminLogin from './pages/AdminLogin';
 import UserLogin from './pages/UserLogin';
@@ -20,6 +21,10 @@ import TicketDetailsView from './components/TicketDetailView';
 import TicketSearch from './components/TicketSearch';
 import TicketUpdate from './components/EditTicketForm';
 import SideBar from "./components/SideBar"
+import HomePageRecent from './components/homePage';
+import TicketDetails from './components/TicketDetailsPage';
+import CartPage from './components/CartPage';
+import PurchaseSuccess from './components/CheckoutSuccessPage';
 
 const App = () => {
     return (
@@ -44,6 +49,11 @@ const App = () => {
                 <Route path='/ticket-search' element={<TicketSearch/>} />
                 <Route path='/ticket-update/:id' element={<TicketUpdate/>} />
                 <Route path="/sidebar" element={<SideBar />} />
+                <Route path='/home-recent' element={< HomePageRecent/>} />
+                <Route path='/home-detail/:id' element={< TicketDetails />} />
+                <Route path='/cart/:id' element={<CartPage/>} />
+                <Route path="/checkout-success" component={<PurchaseSuccess/>} />
+        
             </Routes>
         </Router>
     );

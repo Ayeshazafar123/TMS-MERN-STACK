@@ -1,0 +1,98 @@
+.shopping-cart-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.cart-table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.cart-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.cart-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.cart-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px; /* Added border-radius for images */
+}
+
+.quantity-button, .remove-button, .checkout-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.quantity-button {
+    margin: 0 5px; /* Added margin around quantity buttons */
+}
+
+
+.remove-button {
+    background-color: #B8001F; /* Updated color for the remove button */
+}
+
+.quantity-button:hover, .remove-button:hover, .checkout-button:hover {
+    background-color: #0056b3;
+}
+
+.total-bill {
+    font-size: 24px; /* Increased font size */
+    font-weight: bold; /* Made the text bold */
+    color: #333; /* Dark gray color */
+    margin: 20px 0; /* Added vertical margins */
+    padding: 10px; /* Added padding */
+    background-color: #f4f4f4; /* Light gray background */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Centered the text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.confirmation-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.confirmation-dialog button {
+    margin: 5px;
+}
